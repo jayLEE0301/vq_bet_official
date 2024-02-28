@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="dual ur3 larr 2F-85 gripper (left hand)">
+    <site name="left_gripper:EndEffector_visualize" type="box" pos="0 0 0.12" size="0.002 0.002 0.002"  quat = " 1.0 0.0  0.0 0."  />
+    
+    <body name="left_gripper:hand" pos="0.0 0.0 0.12"> <!--name was ee_link--> <!--euler = "-1.570796 0 0"-->
+        <site name="left_gripper:qcX" type="box" pos="0.05 0.0 0.0" size="0.05 0.002 0.002"  quat = " 1.0 0.0  0.0 0."     rgba="1 0 0 1" />
+        <site name="left_gripper:qcY" type="box" pos="0.0 0.05 0.0" size="0.05 0.002 0.002"  quat = " 0.707107 0.0 0.0 0.707107"  rgba="0 1 0 1" />
+        <site name="left_gripper:qcZ" type="box" pos="0.0 0.0 0.05" size="0.05 0.002 0.002"  quat = "-0.707107 0.0 0.707107 0."     rgba="0 0 1 1" />
+    </body>
+    
+    <geom name="left_gripper:light_1" type="sphere" size="0.005" pos="0.035 0 0.0166" material="Light" />
+    <geom name="left_gripper:light_2" type="sphere" size="0.005" pos="-0.035 0 0.0166" material="Light" />
+
+    <geom name="left_gripper:kinova_robotiq_coupler_mesh" type="mesh" mesh="kinova_robotiq_coupler" pos="0 0 0.0466" material="GriMat" />
+    <geom name="left_gripper:robotiq_85_base_link_mesh" type="mesh" mesh="robotiq_85_base_link" pos="0 0 0.0016" quat="0.707107 0 -0.707107 0" material="GriMat" />
+    
+    <!--1.-->
+    <!--Right finger-->
+    <body name="left_gripper:right_driver" pos="0 -0.0306011 0.054904" quat="0.707107 0 -0.707107 0">
+        <geom name="left_gripper:right_driver_mesh" type="mesh" mesh="robotiq_85_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="left_gripper:joint7_1" axis="0 0 1"  type="hinge" limited="true" range="-0.6 0.7" armature="1.0" />
+                                                
+        <body name="left_gripper:right_coupler" pos="0 -0.0315 0">
+            <geom name="left_gripper:right_coupler_mesh" type="mesh" mesh="robotiq_85_finger_link" material="GriMat" contype="0" conaffinity="0" />
+            <joint name="left_gripper:joint8_1" axis="0 0 1" type="hinge" limited="true" range="-1.57 2.967059728" />
+
+        </body>
+    </body>
+    <!--Fingertip link-->
+    <body name="left_gripper:dummy_right_driver" pos="0 -0.0306011 0.054904" quat="0.707107 0 -0.707107 0">
+        
+        <body name="left_gripper:dummy_right_coupler" pos="0 -0.0315 0">
+            
+            <body name="left_gripper:right_follower_link" pos="0.0475 -0.006 0">
+                <!-- <joint name="left_gripper:right_fingertip:rot:free" axis="0 0 1" type="hinge" limited="true" range="-1.57 2.967059728" /> -->
+                <joint name="left_gripper:right_fingertip:slide:control" type="slide" axis="0 1 0" pos="0 0 0" limited="true" range="-0.0025 0.04" />
+                <joint name="left_gripper:right_fingertip:slide:free" type="slide" axis="1 0 0" pos="0 0 0" limited="true" range="-0.1 0.1" />
+
+                <geom name="left_gripper:right_follower_mesh" pos="0.0025 0.021 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="0.1 0.1 0.002" />
+                <site name="left_gripper:rightEndEffector" pos="0.004 0.0175 0" size="0.01" rgba="1.0 0.0 0.0 1.0"/>
+            </body>
+
+        </body>
+
+    </body>
+    <!--Loop closing link-->
+    <body name="left_gripper:right_spring_link" pos="0.0016 -0.012 0.0614" quat="0.707107 0 -0.707107 0">
+        <geom name="left_gripper:right_spring_mesh" type="mesh" pos="0 -0.0005 0.0016" mesh="robotiq_85_inner_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="left_gripper:joint10_1" axis="0 0 1" type="hinge" limited="true" range="0 1.57" />
+    </body>
+
+    
+    <!--2.-->
+    <!--Left finger-->
+    <body name="left_gripper:left_driver" pos="0 0.0306011 0.054904" quat="0 0.707107 0 0.707107">
+        <geom name="left_gripper:left_driver_mesh" type="mesh" mesh="robotiq_85_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="left_gripper:joint7_2" axis="0 0 1" type="hinge" limited="true" range="-0.6 0.7" armature="1.0" />
+
+        <body name="left_gripper:left_coupler" pos="0 -0.0315 0">
+            <geom name="left_gripper:left_coupler_mesh" type="mesh" mesh="robotiq_85_finger_link" material="GriMat" contype="0" conaffinity="0" />
+            <joint name="left_gripper:joint8_2" axis="0 0 1" type="hinge" limited="true" range="0 2.967059728" />
+            
+        </body>
+    </body>
+    <!--Fingertip link-->
+    <body name="left_gripper:dummy_left_driver" pos="0 0.0306011 0.054904" quat="0 0.707107 0 0.707107">
+
+        <body name="left_gripper:dummy_left_coupler" pos="0 -0.0315 0">
+
+            <body name="left_gripper:left_follower_link" pos="0.0475 -0.006 0">
+                <!-- <joint name="left_gripper:left_fingertip:rot:free" axis="0 0 1" type="hinge" limited="true" range="-1.57 2.967059728" /> -->
+                <joint name="left_gripper:left_fingertip:slide:control" type="slide" axis="0 1 0" pos="0 0 0" limited="true" range="-0.0025 0.04" />
+                <joint name="left_gripper:left_fingertip:slide:free" type="slide" axis="1 0 0" pos="0 0 0" limited="true" range="-0.1 0.1" />
+
+                <geom name="left_gripper:left_follower_mesh" pos="0.0025 0.021 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="0.1 0.1 0.002" />
+                <site name="left_gripper:left_follower_1" pos="0.02 0.03 0 " size=".006 .014 .014"/>
+            </body>
+
+        </body>
+
+    </body>
+    <!--Loop closing link-->
+    <body name="left_gripper:left_spring_link" pos="0.0016 0.012 0.0614" quat="0 0.707107 0 0.707107">
+        <geom name="left_gripper:left_spring_mesh" type="mesh" pos="0 0.0005 0.0016" mesh="robotiq_85_inner_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="left_gripper:joint10_2" axis="0 0 1" type="hinge" limited="true" range="0 1" />
+        <site name="left_gripper:leftEndEffector" pos="0.004 0.0175 0" size="0.01" rgba="1.0 0.0 0.0 1.0"/> <!--pos 불확실-->
+    </body>
+
+</mujoco>

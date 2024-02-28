@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="wiper">
+    <!--Infer masses and inertial masses from geometry-->
+	<compiler coordinate="local" inertiafromgeom="true"/>
+
+    <!--Global defaults-->
+	<default>
+		<joint armature="0" damping="0.05" limited="false"/>
+		<geom contype="1" friction="1 0.1 0.1" rgba="0.7 0.7 0 1"/>
+	</default>
+
+    <!--Simulator options-->
+	<option gravity="0 0 -9.81" integrator="RK4" timestep="0.01"/>
+	<size nstack="3000"/>
+
+    <!--Define bodies-->
+    <worldbody>
+        <!--<geom name="floor" pos="0 0 -3.0" rgba="0.8 0.9 0.8 1" size="40 40 40"/>-->
+        <geom name="bar" pos="0 0 0" quat="0.707 0 0.707 0" rgba="0.3 0.3 0.7 1" size="0.02 1" type="capsule" contype="0"/>
+
+        <!--Box-->
+        <body name="box" pos="0 0 0">
+            <geom name="box" type="box" size="0.05 0.05 0.05" rgba="0.7 0 0 1"/>
+        </body>
+
+        <!--Right wiper-->
+        <body name="pole_right1" pos="0.3 0 0">
+            <joint axis="0 1 0" name="hinge_right1" pos="0 0 0" type="hinge"/>
+            <geom fromto="0 0 0 0.3 0 -0.4" name="pole_right1" rgba="0 0.7 0.7 1" size="0.05" type="capsule"/>
+            <body name="pole_right2" pos="0.3 0 -0.4">
+                <joint axis="0 1 0" name="hinge_right2" pos="0 0 0" type="hinge"/>
+                <geom fromto="0 0 0 -0.3 0 -0.4" name="pole_right2" rgba="0.7 0 0.7 1" size="0.05" type="capsule"/>
+            </body>
+        </body>
+        <!--trial 1-->
+        <!-- <body name="wiper_right" pos="0.3 0 -0.8">
+            <joint axis="0 1 0" name="wiper_right:yrot" pos="0 0 0" type="hinge" limited="true" range="-0.001 0.001" />
+            <joint name="wiper_right:xslide" type="slide" axis="-1 0 0" pos="0 0 0" limited="true" range="-0.3 0.3" />
+            <joint name="wiper_right:zslide" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" />
+            <geom fromto="0 0 0 0 0 -0.3" name="wiper_right" rgba="0.7 0.7 0 1" size="0.1" type="cylinder"/>
+        </body> -->
+        <!--trial 2-->
+        <body name="dummy_pole_right1" pos="0.3 0 0">
+            <body name="dummy_pole_right2" pos="0.3 0 -0.4">
+                <body name="wiper_right" pos="-0.3 0 -0.4">
+                    <!-- <joint axis="0 1 0" name="wiper_right:yrot" pos="0 0 0" type="hinge" limited="true" range="-0.001 0.001" /> -->
+                    <joint name="wiper_right:xslide" type="slide" axis="-1 0 0" pos="0 0 0" limited="true" range="-0.3 0.3" />
+                    <joint name="wiper_right:zslide" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" />
+                    <geom fromto="0 0 0 0 0 -0.3" name="wiper_right" rgba="0.7 0.7 0 1" size="0.1" type="cylinder"/>
+                </body>
+            </body>
+        </body>
+
+        <!--Left wiper-->
+        <body name="pole_left1" pos="-0.3 0 0">
+            <joint axis="0 -1 0" name="hinge_left1" pos="0 0 0" type="hinge"/>
+            <geom fromto="0 0 0 -0.3 0 -0.4" name="pole_left1" rgba="0 0.7 0.7 1" size="0.05" type="capsule"/>
+            <body name="pole_left2" pos="-0.3 0 -0.4">
+                <joint axis="0 -1 0" name="hinge_left2" pos="0 0 0" type="hinge"/>
+                <geom fromto="0 0 0 0.3 0 -0.4" name="pole_left2" rgba="0.7 0 0.7 1" size="0.05" type="capsule"/>
+            </body>
+        </body>
+        <!--trial 1-->
+        <!-- <body name="wiper_left" pos="-0.3 0 -0.8">
+            <joint axis="0 -1 0" name="wiper_left:yrot" pos="0 0 0" type="hinge" limited="true" range="-0.001 0.001" />
+            <joint name="wiper_left:xslide" type="slide" axis="1 0 0" pos="0 0 0" limited="true" range="-0.3 0.3" />
+            <joint name="wiper_left:zslide" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" />
+            <geom fromto="0 0 0 0 0 -0.3" name="wiper_left" rgba="0.7 0.7 0 1" size="0.1" type="cylinder"/>
+        </body> -->
+        <!--trial 2-->
+        <body name="dummy_pole_left1" pos="-0.3 0 0">
+            <body name="dummy_pole_left2" pos="-0.3 0 -0.4">
+                <body name="wiper_left" pos="0.3 0 -0.4">
+                    <!-- <joint axis="0 -1 0" name="wiper_left:yrot" pos="0 0 0" type="hinge" limited="true" range="-0.001 0.001" /> -->
+                    <joint name="wiper_left:xslide" type="slide" axis="1 0 0" pos="0 0 0" limited="true" range="-0.3 0.3" />
+                    <joint name="wiper_left:zslide" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" />
+                    <geom fromto="0 0 0 0 0 -0.3" name="wiper_left" rgba="0.7 0.7 0 1" size="0.1" type="cylinder"/>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <!--Define kinematic constraints-->
+    <equality>
+        <connect body1="wiper_right" body2="pole_right2" anchor="0 0 0" />
+        <connect body1="wiper_left" body2="pole_left2" anchor="0 0 0" />
+    </equality>
+
+    <!--Define actuators-->
+    <actuator>
+        <!-- <motor joint="hinge_right1" name="hinge_right1" ctrlrange="-400 400"/>
+        <motor joint="hinge_right2" name="hinge_right2" ctrlrange="-100 100"/>
+        <motor joint="hinge_left1" name="hinge_left1" ctrlrange="-400 400"/>
+        <motor joint="hinge_left2" name="hinge_left2" ctrlrange="-100 100"/> -->
+
+        <motor joint="wiper_right:xslide" name="wiper_right" ctrlrange="-1000 1000" />
+        <motor joint="wiper_left:xslide" name="wiper_left" ctrlrange="-1000 1000" />
+
+        <!-- <motor joint="wiper_right:yrot" name="hinge_wiper_right" ctrlrange="-1000 1000" />
+        <motor joint="wiper_left:yrot" name="hinge_wiper_left" ctrlrange="-1000 1000" /> -->
+        
+    </actuator>
+</mujoco>

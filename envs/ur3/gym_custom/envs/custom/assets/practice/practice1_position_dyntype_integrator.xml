@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <include file="practice1_shared_config.xml"/> <!--Import config-->
+
+    <worldbody>
+        <include file="practice1_base.xml"/> <!--Import kinematic chain-->
+    </worldbody>
+
+    <!--Define actuators-->
+	<actuator>
+		<!-- <motor gear="100" joint="slider" name="slide"/> -->
+        <general joint="hinge" name="hinge" ctrlrange="-6.28 6.28" dyntype="integrator" gaintype="fixed" biastype="affine" dynprm="1 0 0" gainprm="3 0 0" biasprm="0 -3 0"/>
+	</actuator>
+</mujoco>

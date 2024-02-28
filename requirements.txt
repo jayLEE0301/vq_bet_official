@@ -1,0 +1,15 @@
+hydra-core==1.2.0
+tqdm
+omegaconf==2.3.0
+zarr
+opencv-python
+gym
+wandb
+matplotlib
+pymunk==6.2.1
+pygame==2.1.2
+shapely==1.8.4
+scikit-image==0.19.3
+imageio==2.22
+imageio-ffmpeg
+gdown

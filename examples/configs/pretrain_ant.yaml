@@ -1,0 +1,76 @@
+defaults:
+  - env_vars: env_vars
+  - _self_
+
+seed: 42
+window_size: 100
+goal_window_size: 10
+eval_window_size: 100
+batch_size: 1024
+epochs: 301
+eval_freq: 10
+eval_on_env_freq: 25
+num_env_evals: 5
+num_final_evals: 20
+num_final_eval_per_goal: 5
+action_window_size: 1
+
+wandb:
+  project: "vq-bet"
+  entity: ${env_vars.wandb_entity}
+
+device: cuda
+optim:
+  lr: 5.5e-5
+  weight_decay: 2e-4
+  betas: [0.9, 0.999]
+
+env:
+  gym:
+    _target_: ant_env.AntWrapper
+    id: AntMazeMultimodal-eval-v0
+    env:
+      _target_: gym.make
+      id: AntMazeMultimodal-eval-v0
+  obs_dim: 41
+  act_dim: 8
+  goal_dim: 41
+
+data:
+  _target_: dataset.get_ant_train_val
+  data_directory: ${env_vars.datasets.ant}
+  goal_conditional: future
+  window_size: ${window_size}
+  future_seq_len: ${goal_window_size}
+  min_future_sep: ${action_window_size}
+  action_window_size: ${action_window_size}
+  vqbet_get_future_action_chunk: false
+  only_sample_tail: false
+  transform:
+    _target_: ant_env.ant_mask_targets
+
+save_every: 10
+save_path: "${env_vars.save_path}/checkpoints/${env.gym.id}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+load_path: null
+
+vqvae_model:
+  _target_: vqvae.VqVae
+  obs_dim: 41
+  input_dim_h: ${action_window_size}
+  input_dim_w: ${env.act_dim}
+  n_latent_dims: 512
+  vqvae_n_embed: 10
+  vqvae_groups: 2
+  eval: false
+  device: ${device}
+  encoder_loss_multiplier: 0.033
+
+
+goal_fn:
+  _target_: ant_env.get_goal_fn
+  data_directory: ${env_vars.datasets.ant}
+  goal_conditional: ${data.goal_conditional}
+  seed: ${seed}
+  train_fraction: 0.95
+  goal_seq_len: ${goal_window_size}
+  unconditional: false

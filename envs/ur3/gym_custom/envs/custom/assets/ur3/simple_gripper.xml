@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="Simple gripper">
+    <!--Base-->
+    <geom name="light_1" type="sphere" size="0.005" pos="0.035 0 0.0166" material="Light" />
+    <geom name="light_2" type="sphere" size="0.005" pos="-0.035 0 0.0166" material="Light" />
+    <geom name="kinova_robotiq_coupler_mesh" type="mesh" mesh="kinova_robotiq_coupler" pos="0 0 0.0466" material="GriMat" />
+    <geom name="robotiq_85_base_link_mesh" type="mesh" mesh="robotiq_85_base_link" pos="0 0 0.0016" quat="0.707107 0 -0.707107 0" material="GriMat" />
+
+    <!--Simple box finger-->
+    <!--Right finger-->
+    <!-- <body name="right_finger">
+        <geom name="right_block" type="box" pos="0 -0.045 0.125" condim="6" solimp="0.99 0.99 0.01" solref="0.02 1.2" mass="0.10" size="0.01 0.005 0.025"
+                friction="1 0.1 0.002" rgba="0.7 0 0.7 1" margin="0.001"
+        />
+        <joint name="right_block" type="slide" axis="0 1 0" pos="0 0 0" limited="true" range="0 0.045" armature="1" damping="10" />
+    </body> -->
+
+    <!--Left finger-->
+    <!-- <body name="left_finger">
+        <geom name="left_block" type="box" pos="0 0.045 0.125" condim="6" solimp="0.99 0.99 0.01" solref="0.02 1.2" mass="0.10" size="0.01 0.005 0.025"
+                friction="1 0.1 0.002" rgba="0.7 0.7 0 1" margin="0.001"
+        />
+        <joint name="left_block" type="slide" axis="0 -1 0" pos="0 0 0" limited="true" range="0 0.045" armature="1" damping="10" />
+    </body> -->
+
+    <!--Mesh finger-->
+    <!--Right finger-->
+    <body name="right_finger" quat="0.707 0 -0.707 0">
+        <geom name="right_tip" rgba = "1 0 1 1" pos="0.1 -0.045 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="5 0.1 0.002"
+        />
+        <joint name="right_block" type="slide" axis="0 1 0" pos="0 0 0" limited="true" range="0 0.045" />
+    </body>
+
+    <!--Left finger-->
+    <body name="left_finger" quat="0.707 0 -0.707 0">
+        <geom name="left_tip" pos="0.1 0.045 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="5 0.1 0.002" quat="0 1 0 0"
+        />
+        <joint name="left_block" type="slide" axis="0 -1 0" pos="0 0 0" limited="true" range="0 0.045" />
+    </body>
+</mujoco>

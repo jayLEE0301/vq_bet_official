@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <!--Constraints-->
+    <equality>
+        
+        <!-- Gripper Couplings (right) -->
+        <connect body1="right_gripper:right_follower_link" body2="right_gripper:right_coupler" anchor="0 0 0" solref="0.02 0.15" />
+        <connect body1="right_gripper:right_follower_link" body2="right_gripper:right_spring_link" anchor="0.004 0.0175 0" solref="0.02 0.15" />
+        <connect body1="right_gripper:left_follower_link" body2="right_gripper:left_coupler" anchor="0 0 0" solref="0.02 0.15" />
+        <connect body1="right_gripper:left_follower_link" body2="right_gripper:left_spring_link" anchor="0.004 0.0175 0" solref="0.02 0.15" />
+        <joint name="right_gripper:symmetry" joint1="right_gripper:right_fingertip:slide:control" joint2="right_gripper:left_fingertip:slide:control" 
+            polycoef="0 1 0 0 0" />
+
+        <!-- Gripper Couplings (left) -->
+        <connect body1="left_gripper:right_follower_link" body2="left_gripper:right_coupler" anchor="0 0 0" solref="0.02 0.15" />
+        <connect body1="left_gripper:right_follower_link" body2="left_gripper:right_spring_link" anchor="0.004 0.0175 0" solref="0.02 0.15" />
+        <connect body1="left_gripper:left_follower_link" body2="left_gripper:left_coupler" anchor="0 0 0" solref="0.02 0.15" />
+        <connect body1="left_gripper:left_follower_link" body2="left_gripper:left_spring_link" anchor="0.004 0.0175 0" solref="0.02 0.15" />
+        <joint name="left_gripper:symmetry" joint1="left_gripper:right_fingertip:slide:control" joint2="left_gripper:left_fingertip:slide:control" 
+            polycoef="0 1 0 0 0" />
+
+    </equality>
+</mujoco>

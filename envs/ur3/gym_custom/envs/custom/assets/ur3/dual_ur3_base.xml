@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="dual ur3 base">
+    <include file="dual_ur3_configs.xml"/>
+    <include file="dual_ur3_constraints.xml"/>
+
+    <worldbody>
+        <camera pos="0 0 3.2" name="topview" /> <!--Remove?-->
+        <camera pos="0 -2 2" name="frontview" xyaxes="1 0 0 0 0.5 1" /> <!--Remove?-->
+        
+        <geom name="floor" type="plane" pos="0 0 0" size="2.5 2.5 0.1" rgba=".6 .6 .5 1"
+            contype="1" conaffinity="1" friction="2 0.1 0.002" material="light_wood_v3"/>
+
+        <body name="stand" pos="0 0 0.09">
+            <!-- <joint name="slidez" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" /> -->
+            <inertial pos="0 0 0" quat="1 0 0 0" mass="75" diaginertia="10 10 10" />
+            <!--Dual UR3 Stand (visualization)-->
+            <geom name="stand" pos="0 0 0" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.3 0.5 0.7 1" mesh="dual_stand_vis"/>
+            <!--Dual UR3 Stand (collision)-->
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex0.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex0.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex1.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex1.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex10.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex10.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex11.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex11.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex12.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex12.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex13.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex13.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex14.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex14.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex15.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex15.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex16.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex16.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex17.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex17.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex18.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex18.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex19.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex19.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex2.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex2.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex20.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex20.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex21.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex21.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex22.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex22.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex23.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex23.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex24.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex24.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex25.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex25.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex26.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex26.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex27.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex27.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex28.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex28.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex29.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex29.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex3.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex3.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex30.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex30.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex31.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex31.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex32.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex32.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex33.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex33.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex34.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex34.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex35.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex35.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex36.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex36.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex37.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex37.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex38.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex38.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex39.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex39.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex4.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex4.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex40.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex40.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex41.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex41.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex42.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex42.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex43.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex43.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex44.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex44.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex45.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex45.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex46.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex46.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex47.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex47.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex48.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex48.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex49.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex49.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex5.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex5.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex50.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex50.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex51.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex51.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex52.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex52.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex53.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex53.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex54.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex54.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex55.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex55.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex56.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex56.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex57.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex57.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex58.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex58.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex59.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex59.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex6.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex6.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex7.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex7.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex8.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex8.stl"/>
+            <geom name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex9.stl" pos="0 0 0" type="mesh" contype="1" conaffinity="0" group="0" rgba="0.2 0.2 0.2 0" mesh="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex9.stl"/>
+        
+            <body name="right_arm_roty" pos="0.160612 0 1.189287" quat="0.382683 0 0.923880 0">
+                <body name="right_arm_rotz" quat="1 0 0 0">
+                    <include file="dual_ur3_larr_right_arm.xml"/>
+                </body>
+            </body>
+            <body name="left_arm_roty" pos="-0.160612 0 1.189287" quat="0.382683 0 -0.923880 0">
+                <body name="left_arm_rotz" quat="1 0 0 0">
+                    <include file="dual_ur3_larr_left_arm.xml"/>
+                </body>
+            </body>
+
+        </body>
+
+        <body name="asri_table(rectangle)" pos="0 10.4 0" >
+            <geom name="rec:tabletop" type="box" pos="0 0 0.72" condim="1" size="0.6 0.3 0.01" rgba=".6 .6 .5 1"
+                contype="1" conaffinity="1" friction="0.01 0.001 0.0002" material="light_wood_v2"/>
+            <geom name="rec:leg1" type="cylinder" fromto="-0.45 -0.25 0.72 -0.45 -0.25 0" size="0.025" material="metal"/>
+            <geom name="rec:leg2" type="cylinder" fromto="-0.45 0.25 0.72 -0.45 0.25 0" size="0.025" material="metal"/>
+            <geom name="rec:leg3" type="cylinder" fromto="0.45 -0.25 0.72 0.45 -0.25 0" size="0.025" material="metal"/>
+            <geom name="rec:leg4" type="cylinder" fromto="0.45 0.25 0.72 0.45 0.25 0" size="0.025" material="metal"/>
+        </body>
+
+        <body name="asri_table(circle)" pos="1 1 0" >
+            <geom name="cir:tabletop" type="cylinder" pos="0 0 0.59" size="0.25 0.01" rgba=".6 .6 .5 1"
+                contype="1" conaffinity="1" friction="2 0.1 0.002" material="light_wood_v2"/>
+            <geom name="cir:leg1" type="cylinder" fromto="0.2 0 0.59 0.2 0 0" size="0.025" material="metal"/>
+            <geom name="cir:leg2" type="cylinder" fromto="0 0.2 0.59 0 0.2 0" size="0.025" material="metal"/>
+            <geom name="cir:leg3" type="cylinder" fromto="-0.2 0 0.59 -0.2 0 0" size="0.025" material="metal"/>
+            <geom name="cir:leg4" type="cylinder" fromto="0 -0.2 0.59 0 -0.2 0" size="0.025" material="metal"/>
+        </body>
+
+        <body name="cube1" pos="0.15 -0.3 0.16" > <!--0.76-->
+            <inertial pos="0 0 0" mass="0.2" diaginertia="0.001 0.001 0.001" />
+            <geom name="cube_1" type="box" pos="0.0 -0.0 -0.0" size="0.03 0.03 0.03" friction="0.01 0.001 0.002" rgba="0.7 0.0 0 1" />
+            <joint name="cube_joint1" type="free" limited="false" damping="0.001" />
+        </body>
+   
+        <body name="cube2" pos="0.3 -0.4 0.16" > <!--0.76-->
+            <inertial pos="0 0 0" mass="0.2" diaginertia="0.001 0.001 0.001" />
+            <geom name="cube_2" type="box" pos="0.0 -0.0 -0.0" size="0.03 0.03 0.03" friction="0.01 0.001 0.002" rgba="0.7 0.0 0 1" />
+            <joint name="cube_joint2" type="free" limited="false" damping="0.001" />
+        </body>
+
+        <body name="cube3" pos="-0.15 -0.3 0.16" > <!--0.76-->
+            <inertial pos="0 0 0" mass="0.2" diaginertia="0.001 0.001 0.001" />
+            <geom name="cube_3" type="box" pos="0.0 -0.0 -0.0" size="0.03 0.03 0.03" friction="0.01 0.001 0.002" rgba="0.7 0.0 0 1" />
+            <joint name="cube_joint3" type="free" limited="false" damping="0.001" />
+        </body>
+        
+        <body name="cube4" pos="-0.3 -0.4 0.16" > <!--0.76-->
+            <inertial pos="0 0 0" mass="0.2" diaginertia="0.001 0.001 0.001" />
+            <geom name="cube_4" type="box" pos="0.0 -0.0 -0.0" size="0.03 0.03 0.03" friction="0.01 0.001 0.002" rgba="0.7 0.0 0 1" />
+            <joint name="cube_joint4" type="free" limited="false" damping="0.001" />
+        </body>
+
+        <!--
+        <body name="cube" pos="0.4 -0.6 1.0" quat="0.92388 0.22094 0.22094 0.22094">
+            <geom name="cube" type="box" size="0.02 0.02 0.02" rgba="0.7 0.7 0 1" />
+            <joint name="cube" type="free" damping="0.001" />
+        </body>
+
+        
+        <body name="mug" pos="0 -0.4 0.73" >
+            <inertial pos="0 0 0.04" mass="0.2" diaginertia="0.001 0.001 0.001" />
+            <geom name="mug" type="mesh" pos="0 0 0.01" mesh="mug" material="light_wood" 
+                contype="1" conaffinity="1" friction="1 0.1 0.002" condim="4"
+            />
+            <joint name="mug" type="free" limited="false" damping="0.001" />
+        </body>
+
+        <body name="asri_box:bottom" pos="0.4 -0.5 0.779" > 
+            <geom name="asri_box:floor" pos="0 0 -0.0465" quat="1 0 0 0" rgba="0.2 0.2 0.2 0.75" size="0.038 0.038 0.0025" type="box" condim="1" density="900" />
+            <geom name="asri_box:side1" pos="0.0355 0 0" quat="0.707 0 0.707 0" rgba="0.8 0.8 0.8 0.75" size="0.0465 0.038 0.0025" type="box" condim="1" density="900" />
+            <geom name="asri_box:side2" pos="-0.0355 0 0" quat="0.707 0 0.707 0" rgba="0.8 0.8 0.8 0.75" size="0.0465 0.038 0.0025" type="box" condim="1" density="900" />
+            <geom name="asri_box:side3" pos="0 0.0355 0" quat="0.707 0.707 0 0" rgba="0.8 0.8 0.8 0.75" size="0.038 0.0465 0.0025" type="box" condim="1" density="900" />
+            <geom name="asri_box:side4" pos="0 -0.0355 0" quat="0.707 0.707 0 0" rgba="0.8 0.8 0.8 0.75" size="0.038 0.0465 0.0025" type="box" condim="1" density="900" />
+            <site name="asri_box:origin" pos="0 0 -0.049" size=".005" />
+            <site name="asri_box:interior" pos="0 0 0" rgba="0 0.8 0 0.25" size="0.0355 0.0355 0.044" type="box" />
+            <joint name="asri_box" type="free" limited="false" damping="0.001" />
+        </body>-->
+
+        <!-- <body name="cube" pos="0.0 -0.4 0.76" quat="0.9961946981 0.0871557427 0 0">
+            <geom name="cube" type="box" mass="0.10" size="0.01 0.01 0.01" rgba="0.7 0.7 0 1" />
+            <joint name="cube" type="free" damping="0.001" />
+        </body>
+
+        <body name="asri_ball_1" pos="-0.3 -0.6 0.75" quat="0.9961946981 0.0871557427 0 0" >
+            <geom name="asri_stickball:ball1" pos="0 0 0" size="0.025" type="sphere" conaffinity="0" contype="0" rgba="1 0 0 1"/>
+            <geom name="asri_stickball:stick" type="capsule" fromto="0 0 0 0 0 0.15" size="0.0025" condim="1" material="light_wood" density="700" /> 
+            <joint name="stickball_box1" type="free" damping="0.001" />
+        </body>
+
+        <body name="asri_ball_2" pos="0.3 -0.6 0.75" quat="0.9961946981 0.0871557427 0 0" >
+            <geom name="asri_stickball:ball2" pos="0 0 0" size="0.025" type="sphere" conaffinity="0" contype="0" rgba="1 0 0 1"/>
+            <geom name="asri_stickball:stick" type="capsule" fromto="0 0 0 0 0 0.15" size="0.0025" condim="1" material="light_wood" density="700" />
+            <joint name="stickball_box2" type="free" damping="0.001" />
+        </body> -->
+
+    </worldbody>
+
+    <!--Define actuators-->
+    <actuator>
+        <!--UR3 (https://www.universal-robots.com/articles/ur-articles/max-joint-torques/)-->
+        <motor name="right_shoulder_pan_joint" joint="right_shoulder_pan_joint" ctrlrange="-50 50" />
+        <motor name="right_shoulder_lift_joint" joint="right_shoulder_lift_joint" ctrlrange="-50 50" />
+        <motor name="right_elbow_joint" joint="right_elbow_joint" ctrlrange="-25 25" />
+        <motor name="right_wrist_1_joint" joint="right_wrist_1_joint" ctrlrange="-10 10" />
+        <motor name="right_wrist_2_joint" joint="right_wrist_2_joint" ctrlrange="-10 10" />
+        <motor name="right_wrist_3_joint" joint="right_wrist_3_joint" ctrlrange="-10 10" />
+        <motor name="left_shoulder_pan_joint" joint="left_shoulder_pan_joint" ctrlrange="-50 50" />
+        <motor name="left_shoulder_lift_joint" joint="left_shoulder_lift_joint" ctrlrange="-50 50" />
+        <motor name="left_elbow_joint" joint="left_elbow_joint" ctrlrange="-25 25" />
+        <motor name="left_wrist_1_joint" joint="left_wrist_1_joint" ctrlrange="-10 10" />
+        <motor name="left_wrist_2_joint" joint="left_wrist_2_joint" ctrlrange="-10 10" />
+        <motor name="left_wrist_3_joint" joint="left_wrist_3_joint" ctrlrange="-10 10" />
+        
+        <!--Gripper-->
+        <motor name="right_close_r" joint="right_gripper:right_fingertip:slide:control" ctrlrange="-10 50" />
+        <motor name="right_close_l" joint="right_gripper:left_fingertip:slide:control" ctrlrange="-10 50" />
+        <motor name="left_close_r" joint="left_gripper:right_fingertip:slide:control" ctrlrange="-10 50" />
+        <motor name="left_close_l" joint="left_gripper:left_fingertip:slide:control" ctrlrange="-10 50" />
+    </actuator>
+
+</mujoco>

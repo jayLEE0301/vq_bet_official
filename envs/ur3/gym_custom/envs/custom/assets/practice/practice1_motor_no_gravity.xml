@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <include file="practice1_motor.xml"/>
+    <option gravity="0 0 0"/> <!--Turn off gravity-->
+</mujoco>

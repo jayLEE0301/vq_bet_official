@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="flyinggripper">
+    <include file="shared_config.xml"/>
+    <!-- <include file="robotiq85_gripper_constraints.xml"/> -->
+    <include file="robotiq85_gripper_constraints_jgkim.xml" />
+
+    <worldbody>
+
+        <geom name="tableTop" type="plane" pos="0 0 0" size="0.4 0.4 0.5"
+            rgba=".6 .6 .5 1" contype="1" conaffinity="1" friction="2 0.1 0.002" material="light_wood_v3"/>
+
+        <body name="pole" pos="0 0 0.2" quat="0.707 0 0 0.707">
+            <geom name="pole" fromto="0 0 0 0 0 0.1" rgba="0 0.7 0.7 1" size="0.04" type="cylinder" />
+            <inertial pos="0 0 0.05" quat="1 0 0 0" mass="1" diaginertia="0.0014 0.0014 0.0012" /> <!--https://en.wikipedia.org/wiki/List_of_moments_of_inertia-->
+            <joint name="pole:xslide" type="slide" axis="1 0 0" pos="0 0 0" limited="true" range="-1 1" />
+            <joint name="pole:yslide" type="slide" axis="0 1 0" pos="0 0 0" limited="true" range="-1 1" />
+            <joint name="pole:zslide" type="slide" axis="0 0 1" pos="0 0 0" limited="true" range="-1 1" />
+            
+            <body name="ee_link" pos="0 0 0" quat="0 0 1 0">
+                <!-- <include file="robotiq85_gripper.xml" /> -->
+                <!-- <include file="simple_gripper.xml" /> -->
+                <include file="robotiq85_gripper_jgkim.xml" />
+            </body>
+        </body>>
+
+        <body name="mug" pos="0 0 0.02">
+        <!-- contype="1" conaffinity="1" friction="1 0.1 0.002" condim="4" -->
+            <!-- <geom type="mesh" pos = "0 0 -0.005" rgba="0.7 0.7 0.7 1" mesh="mug" material="light_wood" 
+                condim="4" solimp="0.99 0.99 0.01" solref="0.02 1.2" mass="0.05" friction="1 0.1 0.002"
+            /> -->
+            <geom type="box" pos="0.3 0.3 -0.005" condim="4" solimp="0.99 0.99 0.01" solref="0.02 1.2" mass="0.1" size="0.025 0.025 0.025"
+                friction="1 0.1 0.002" rgba="0 0.7 0.7 1"
+            />
+            <!-- <geom type="sphere" pos="0 0 -0.005" condim="4" solimp="0.99 0.99 0.01" solref="0.02 1.2" mass="0.05" size="0.025"
+                friction="1 0.1 0.002" rgba="0 0.7 0.7 1"
+            /> -->
+            <!-- <inertial /> -->
+            <joint name="mug" type="free" limited="false" damping="0.0" armature="0" />
+        </body>
+
+        <!-- <body pos="0.3 0.3 0.1">
+            <freejoint/>        
+            <composite type="box" count="7 7 7" spacing="0.04">
+                <skin texcoord="true" material="matsponge" rgba=".7 .7 .7 1"/>
+                <geom type="capsule" size=".015 0.05" rgba=".8 .2 .1 1"/>
+            </composite>
+        </body> -->
+        
+    </worldbody>
+
+    <!--Define actuators-->
+    <actuator>
+        <!--Pole-->
+        <motor name="xslide" joint="pole:xslide" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="yslide" joint="pole:yslide" ctrllimited="true" ctrlrange="-1000 1000" />
+        <motor name="zslide" joint="pole:zslide" ctrllimited="true" ctrlrange="-1000 1000" />
+
+        <!--Gripper-->
+
+        <!--1. robotiq gripper (dscho)-->
+        <!-- <position name="close_r" joint="joint7_1" ctrllimited="true" ctrlrange="-10 10" kp="3"/>
+        <position name="close_l" joint="joint7_2" ctrllimited="true" ctrlrange="-10 10" kp="3"/> -->
+        
+        <!-- <motor name="close_r" joint="joint7_1" ctrllimited="true" ctrlrange="-10 10" />
+        <motor name="close_l" joint="joint7_2" ctrllimited="true" ctrlrange="-10 10" /> -->
+
+        <!--2. simple gripper-->
+        <!-- <motor name="close_r" joint="right_block" ctrllimited="true" ctrlrange="-100 100" />
+        <motor name="close_l" joint="left_block" ctrllimited="true" ctrlrange="-100 100" /> -->
+
+        <!--3. robotiq gripper (jgkim)-->
+        <motor joint="right_fingertip:slide:control" name="close_r" ctrlrange="-10 50" />
+        <motor joint="left_fingertip:slide:control" name="close_l" ctrlrange="-10 50" />
+
+    </actuator>
+    
+</mujoco>

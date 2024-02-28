@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="ur3">
+    <camera pos="0 0 3.2" name="topview" /> <!--0 0 3.2-->
+
+    <!--<geom name="floor" type="plane" pos="0 0 -.9" size="10 10 10"-->
+          <!--rgba="0 0 0 1" contype="15" conaffinity="15" />-->
+    <!--<geom name="tableTop" type="box" pos="0 0.6 -0.45" size="0.4 0.2 0.45"
+          rgba=".6 .6 .5 1" contype="15" conaffinity="15" />-->
+    <geom name="tableTop" type="plane" pos="0 0.6 0" size="0.4 0.4 0.5"
+          rgba=".6 .6 .5 1" contype="1" conaffinity="1" friction="2 0.1 0.002" material="light_wood_v3"/>
+
+    <body name="base" pos="0 0.2 0">
+        <site name="base_X" type="box" pos="0.05 0.0 0.0" size="0.1 0.002 0.002"  quat = " 1.0 0.0  0.0 0."     rgba="1 0 0 1" />
+	    <site name="base_Y" type="box" pos="0.0 0.05 0.0" size="0.1 0.002 0.002"  quat = " 0.707107 0.0 0.0 0.707107"  rgba="0 1 0 1" />
+    	<site name="base_Z" type="box" pos="0.0 0.0 0.05" size="0.1 0.002 0.002"  quat = "-0.707107 0.0 0.707107 0."     rgba="0 0 1 1" />
+        <site name="basesite" pos="0 0 0" size="0.01" />
+        <inertial pos="0 0 0" mass="0" diaginertia="0 0 0" />
+        <body name="controller_box" pos="0 0 0">
+            <inertial pos="-0.325 0 -0.38" mass="46.64" diaginertia="1.71363 1.27988 0.809981" />
+            <geom size="0.11 0.2 0.265" pos="-0.325 0 -0.38" type="box" rgba="0.2 0.2 0.2 1"/>
+        </body>
+        <body name="pedestal_feet" pos="0 0 0">
+            <inertial pos="-0.1225 0 -0.758" mass="167.09" diaginertia="8.16095 9.59375 15.0785" />
+            <geom size="0.385 0.35 0.155" pos="-0.1225 0 -0.758" type="box" rgba="0.2 0.2 0.2 1" contype="0" conaffinity="0" />
+        </body>
+        <body name="torso" pos="0 0 0">
+            <inertial pos="0 0 0" mass="0.0001" diaginertia="1e-08 1e-08 1e-08" />
+            <geom size="0.05 0.05 0.05" type="box" contype="0" conaffinity="0" group="1" rgba="0.2 0.2 0.2 1" />
+        </body>
+        <body name="pedestal" pos="0 0 0">
+            <inertial pos="0 0 0" quat="0.659267 -0.259505 -0.260945 0.655692" mass="60.864" diaginertia="6.0869 5.81635 4.20915" />
+            <geom pos="0.26 0.345 -0.91488" quat="0.5 0.5 -0.5 -0.5" type="mesh" contype="0" conaffinity="0" group="1" rgba="0.2 0.2 0.2 1" mesh="pedestal" />
+            <geom size="0.18 0.31" pos="-0.02 0 -0.29" type="cylinder" rgba="0.2 0.2 0.2 0" />
+        </body>
+        <body name="base_link" pos="0 0 0" euler ="0 0 1.570796"> <!--no angle--> <!--euler ="0 0 1.570796"-->
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="2" diaginertia="0.005625 0.00305317 0.00305317" />
+            <geom type="mesh" pos = "0 0 -0.005" rgba="0.7 0.7 0.7 1" mesh="ur_base" material="robot0:base_mat" />
+            <body name="shoulder_link" pos="0 0 0.1519">
+                <inertial pos="0 0 0" mass="2" diaginertia="0.00809316 0.00809316 0.005625" />
+                <joint name="shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="10"/>
+                <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="shoulder" material="robot0:head_mat" />
+                <body name="upper_arm_link" pos="0 0.1198 0" quat="0.707107 0 0.707107 0" ><!--quat="0.707107 0 0.707107 0"-->
+                    <inertial pos="0 0 0.121825" mass="3.42" diaginertia="0.0217285 0.0217285 0.00961875" />
+                    <joint name="shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="10"/>
+                    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="upperarm" material="robot0:head_mat" />
+                    <body name="forearm_link" pos="0 -0.0925 0.24365"> <!--no angle--><!-- euler="0 1.570796 0"-->
+                        <inertial pos="0 0 0.106625" mass="1.26" diaginertia="0.00654681 0.00654681 0.00354375" />
+                        <joint name="elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159" damping="10"/>
+                        <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="forearm" material="robot0:arm_mat"/>
+                        <body name="wrist_1_link" pos="0 0 0.21325" quat="0.707107 0 0.707107 0" ><!--quat="0.707107 0 0.707107 0"-->
+                            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.8" diaginertia="0.00225 0.002085 0.002085" />
+                            <joint name="wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="10"/>
+                            <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="wrist1" material="RobMat"/>
+                            <body name="wrist_2_link" pos="0 0.08105 0"> <!--no angle--> <!-- euler ="0 0 -1.570796"-->
+                                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.8" diaginertia="0.00225 0.002085 0.002085" />
+                                <joint name="wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" damping="10"/>
+                                <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="wrist2" material="RobMat" />
+                                <body name="wrist_3_link" pos="0 0 0.08535">
+                                    <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.35" diaginertia="0.000984375 0.000912187 0.000912187" />
+                                    <joint name="wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" damping="10"/>
+                                    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="wrist3" material="RobMat"/>
+                                    
+                                    <body name="ee_link" pos="0 0.0819 0" euler = "-1.570796 0 0"> <!--name was ee_link--> <!--euler = "-1.570796 0 0"-->
+                                        <!--Import Robotiq 2F-85 Gripper-->
+                                        <include file="robotiq85_gripper.xml"/> 
+                                    </body>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <body name="ur3_base" pos="0 0 0" quat="1.7949e-09 0 0 -1">
+                <inertial pos="0 0 0" quat="1.7949e-09 0 0 -1" mass="0" diaginertia="0 0 0" />
+            </body>
+        </body>
+    </body>
+
+</mujoco>

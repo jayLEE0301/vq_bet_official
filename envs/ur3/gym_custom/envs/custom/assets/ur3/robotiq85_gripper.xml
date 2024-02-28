@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="2F-85">
+    <!--inertial pos="-0.01 0 0" mass="0.001" diaginertia="1.66667e-08 1.66667e-08 1.66667e-08" /-->
+    <!--geom size="0.005 0.005 0.005" pos="-0.01 0 0" type="box" /-->
+    <site name="EndEffector_visualize" type="box" pos="0 0 0.12" size="0.002 0.002 0.002"  quat = " 1.0 0.0  0.0 0."  />
+    
+    <body name="hand" pos="0.0 0.0 0.12"> <!--name was ee_link--> <!--euler = "-1.570796 0 0"-->
+        <site name="qcX" type="box" pos="0.05 0.0 0.0" size="0.05 0.002 0.002"  quat = " 1.0 0.0  0.0 0."     rgba="1 0 0 1" />
+        <site name="qcY" type="box" pos="0.0 0.05 0.0" size="0.05 0.002 0.002"  quat = " 0.707107 0.0 0.0 0.707107"  rgba="0 1 0 1" />
+        <site name="qcZ" type="box" pos="0.0 0.0 0.05" size="0.05 0.002 0.002"  quat = "-0.707107 0.0 0.707107 0."     rgba="0 0 1 1" />
+    </body>
+    <!--camera name="gripper_camera" euler="0 3.14159265 0" fovy="63.5" /-->
+    <geom name="light_1" type="sphere" size="0.005" pos="0.035 0 0.0166" material="Light" />
+    <geom name="light_2" type="sphere" size="0.005" pos="-0.035 0 0.0166" material="Light" />
+    <geom name="kinova_robotiq_coupler_mesh" type="mesh" mesh="kinova_robotiq_coupler" pos="0 0 0.0466" material="GriMat" />
+    <geom name="robotiq_85_base_link_mesh" type="mesh" mesh="robotiq_85_base_link" pos="0 0 0.0016" quat="0.707107 0 -0.707107 0" material="GriMat" />
+
+    <body name="right_driver" pos="0 -0.0306011 0.054904" quat="0.707107 0 -0.707107 0">
+        <geom name="right_driver_mesh" rgba = "1 1 1 1" type="mesh" mesh="robotiq_85_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="joint7_1" axis="0 0 1"  type="hinge" limited="true" range="-0.6 0.7" armature="1.0" />
+                                                
+        <body name="right_coupler" pos="0 -0.0315 0">
+            <geom name="right_coupler_mesh" rgba = "0 1 1 1" type="mesh" mesh="robotiq_85_finger_link" material="GriMat" contype="0" conaffinity="0" />
+            <joint name="joint8_1" axis="0 0 1" type="hinge" limited="true" range="-1.57 2.967059728" />
+            <body name="right_follower_link" pos="0.0475 -0.006 0">
+                <geom name="right_follower_mesh" rgba = "1 0 1 1" pos="0.0025 0.021 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="5 0.1 0.002"
+                />
+                <joint name="joint9_1" axis="0 0 1" type="hinge" limited="true" range="-1.57  2.967059728" />
+                <site name="rightEndEffector" pos="0.004 0.0175 0" size="0.01" rgba="1.0 0.0 0.0 1.0"/>
+            </body>
+        </body>
+
+    </body>
+
+    <body name="right_spring_link" pos="0.0016 -0.012 0.0614" quat="0.707107 0 -0.707107 0">
+        <geom name="right_spring_mesh" rgba = "1 1 0 1" type="mesh" pos="0 -0.0005 0.0016" mesh="robotiq_85_inner_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="joint10_1" axis="0 0 1" type="hinge" limited="true" range="0 1.57" />
+        <!--site name="qcX10" type="box" pos="0.0 0.0 0.0" size="0.05 0.002 0.002"  quat = " 1.0 0.0  0.0 0."     rgba="1 0 0 1" />
+        <site name="qcY10" type="box" pos="0.0 0.0 0.0" size="0.05 0.002 0.002"  quat = " 0.707107 0.0 0.0 0.707107"  rgba="0 1 0 1" />
+        <site name="qcZ10" type="box" pos="0.0 0.0 0.0" size="0.05 0.002 0.002"  quat = "-0.707107 0.0 0.707107 0."     rgba="0 0 1 1" />
+        
+        <site name="qcX10_1" type="box" pos="0.0447 -0.038 0.0" size="0.05 0.002 0.002"  quat = " 1.0 0.0  0.0 0."     rgba="1 0 0 1" />
+        <site name="qcY10_1" type="box" pos="0.0447 -0.038 0.0" size="0.05 0.002 0.002"  quat = " 0.707107 0.0 0.0 0.707107"  rgba="0 1 0 1" />
+        <site name="qcZ10_1" type="box" pos="0.0447 -0.038 0.0" size="0.05 0.002 0.002"  quat = "-0.707107 0.0 0.707107 0."     rgba="0 0 1 1" /-->
+    </body>
+
+
+    <body name="left_driver" pos="0 0.0306011 0.054904" quat="0 0.707107 0 0.707107">
+        <geom name="left_driver_mesh" type="mesh" mesh="robotiq_85_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="joint7_2" axis="0 0 1" type="hinge" limited="true" range="-0.6 0.7" armature="1.0" />
+
+        <body name="left_coupler" pos="0 -0.0315 0">
+            <geom name="left_coupler_mesh" type="mesh" mesh="robotiq_85_finger_link" material="GriMat" contype="0" conaffinity="0" />
+            <joint name="joint8_2" axis="0 0 1" type="hinge" limited="true" range="0 2.967059728" />
+            <body name="left_follower_link" pos="0.0475 -0.006 0">
+                <geom name="left_follower_mesh" pos="0.0025 0.021 0" type="mesh" mesh="robotiq_85_finger_tip_link" material="GriMat" 
+                    condim="4" solimp="0.99 0.99 0.01" solref="0.01 1" friction="5 0.1 0.002"
+                />
+                <joint name="joint9_2" axis="0 0 1" type="hinge" limited="true" range="0 2.967059728" />
+                <site name="left_follower_1" pos="0.02 0.03 0 " size=".006 .014 .014"/>
+            </body>
+        </body>
+
+    </body>
+
+    <body name="left_spring_link" pos="0.0016 0.012 0.0614" quat="0 0.707107 0 0.707107">
+        <geom name="left_spring_mesh" type="mesh" pos="0 0.0005 0.0016" mesh="robotiq_85_inner_knuckle_link" material="GriMat" contype="0" conaffinity="0" />
+        <joint name="joint10_2" axis="0 0 1" type="hinge" limited="true" range="0 1" />
+        <site name="leftEndEffector" pos="0.004 0.0175 0" size="0.01" rgba="1.0 0.0 0.0 1.0"/> <!--pos 불확실-->
+    </body>
+
+<!--body name="tool0" pos="0 0.0819 0" quat="0.707107 -0.707107 0 0">
+    <inertial pos="0 0.0819 0" quat="0.707107 -0.707107 0 0" mass="0" diaginertia="0 0 0" />
+</body--> 
+
+</mujoco>

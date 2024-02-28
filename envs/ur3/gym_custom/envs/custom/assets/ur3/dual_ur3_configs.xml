@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <!--Simulator Options-->
+    <compiler inertiafromgeom="auto" angle="radian" coordinate="local" eulerseq="XYZ" meshdir="../meshes" texturedir="../textures"/>
+    <option timestep='0.004' iterations="50" tolerance="1e-10" solver="Newton" jacobian="dense" cone="elliptic" noslip_iterations="10"
+        gravity="0 0 -9.81" />
+
+    <!--Defaults-->
+    <default>
+        <joint damping="1" stiffness="0" user="0"/>
+        <geom solref="0.02 1" solimp="1 1 0"/>
+        <motor ctrllimited="true" ctrlrange="-1 1"/>
+    </default>
+
+    <!--Camera Light-->
+    <visual>
+        <headlight ambient="0.5 0.5 0.5" />
+    </visual>
+
+    <!--Global Illumination-->
+    <worldbody>
+        <light diffuse=".8 .8 .8" dir="0 -.15 -1" directional="false" pos="1 1 4.0" specular="0.3 0.3 0.3" castshadow="false"/>
+        <light diffuse=".8 .8 .8" dir="0 -.15 -1" directional="false" pos="-3. -3. 4.0" specular="0.3 0.3 0.3" castshadow="false"/>
+    </worldbody>
+
+    <!--Meshes and Textures-->
+    <asset>
+        <!--Dual UR3 Stand (visualization)-->
+        <!-- <mesh name="dual_stand" file="ur3/dual_ur3_stand_bare_coarse_filtered.stl" scale="0.001 0.001 0.001" ></mesh>
+        <mesh name="mount_plate" file="ur3/dual_ur3_mountplate.stl" scale="0.001 0.001 0.001" ></mesh>
+        <mesh name="dual_stand_with_mount_plate" file="ur3/dual_ur3_stand_bare_withmount_coarse_filtered.stl" 
+            scale="0.001 0.001 0.001" ></mesh> -->
+        <mesh name="dual_stand_vis" file="ur3/dual_ur3_stand_final_filtered.stl" ></mesh>
+        
+        <!--Dual UR3 Stand (collision)-->
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex0.stl" file="ur3/dual_ur3_stand_collision_box/test_convex0.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex1.stl" file="ur3/dual_ur3_stand_collision_box/test_convex1.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex10.stl" file="ur3/dual_ur3_stand_collision_box/test_convex10.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex11.stl" file="ur3/dual_ur3_stand_collision_box/test_convex11.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex12.stl" file="ur3/dual_ur3_stand_collision_box/test_convex12.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex13.stl" file="ur3/dual_ur3_stand_collision_box/test_convex13.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex14.stl" file="ur3/dual_ur3_stand_collision_box/test_convex14.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex15.stl" file="ur3/dual_ur3_stand_collision_box/test_convex15.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex16.stl" file="ur3/dual_ur3_stand_collision_box/test_convex16.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex17.stl" file="ur3/dual_ur3_stand_collision_box/test_convex17.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex18.stl" file="ur3/dual_ur3_stand_collision_box/test_convex18.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex19.stl" file="ur3/dual_ur3_stand_collision_box/test_convex19.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex2.stl" file="ur3/dual_ur3_stand_collision_box/test_convex2.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex20.stl" file="ur3/dual_ur3_stand_collision_box/test_convex20.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex21.stl" file="ur3/dual_ur3_stand_collision_box/test_convex21.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex22.stl" file="ur3/dual_ur3_stand_collision_box/test_convex22.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex23.stl" file="ur3/dual_ur3_stand_collision_box/test_convex23.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex24.stl" file="ur3/dual_ur3_stand_collision_box/test_convex24.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex25.stl" file="ur3/dual_ur3_stand_collision_box/test_convex25.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex26.stl" file="ur3/dual_ur3_stand_collision_box/test_convex26.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex27.stl" file="ur3/dual_ur3_stand_collision_box/test_convex27.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex28.stl" file="ur3/dual_ur3_stand_collision_box/test_convex28.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex29.stl" file="ur3/dual_ur3_stand_collision_box/test_convex29.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex3.stl" file="ur3/dual_ur3_stand_collision_box/test_convex3.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex30.stl" file="ur3/dual_ur3_stand_collision_box/test_convex30.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex31.stl" file="ur3/dual_ur3_stand_collision_box/test_convex31.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex32.stl" file="ur3/dual_ur3_stand_collision_box/test_convex32.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex33.stl" file="ur3/dual_ur3_stand_collision_box/test_convex33.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex34.stl" file="ur3/dual_ur3_stand_collision_box/test_convex34.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex35.stl" file="ur3/dual_ur3_stand_collision_box/test_convex35.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex36.stl" file="ur3/dual_ur3_stand_collision_box/test_convex36.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex37.stl" file="ur3/dual_ur3_stand_collision_box/test_convex37.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex38.stl" file="ur3/dual_ur3_stand_collision_box/test_convex38.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex39.stl" file="ur3/dual_ur3_stand_collision_box/test_convex39.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex4.stl" file="ur3/dual_ur3_stand_collision_box/test_convex4.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex40.stl" file="ur3/dual_ur3_stand_collision_box/test_convex40.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex41.stl" file="ur3/dual_ur3_stand_collision_box/test_convex41.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex42.stl" file="ur3/dual_ur3_stand_collision_box/test_convex42.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex43.stl" file="ur3/dual_ur3_stand_collision_box/test_convex43.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex44.stl" file="ur3/dual_ur3_stand_collision_box/test_convex44.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex45.stl" file="ur3/dual_ur3_stand_collision_box/test_convex45.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex46.stl" file="ur3/dual_ur3_stand_collision_box/test_convex46.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex47.stl" file="ur3/dual_ur3_stand_collision_box/test_convex47.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex48.stl" file="ur3/dual_ur3_stand_collision_box/test_convex48.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex49.stl" file="ur3/dual_ur3_stand_collision_box/test_convex49.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex5.stl" file="ur3/dual_ur3_stand_collision_box/test_convex5.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex50.stl" file="ur3/dual_ur3_stand_collision_box/test_convex50.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex51.stl" file="ur3/dual_ur3_stand_collision_box/test_convex51.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex52.stl" file="ur3/dual_ur3_stand_collision_box/test_convex52.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex53.stl" file="ur3/dual_ur3_stand_collision_box/test_convex53.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex54.stl" file="ur3/dual_ur3_stand_collision_box/test_convex54.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex55.stl" file="ur3/dual_ur3_stand_collision_box/test_convex55.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex56.stl" file="ur3/dual_ur3_stand_collision_box/test_convex56.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex57.stl" file="ur3/dual_ur3_stand_collision_box/test_convex57.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex58.stl" file="ur3/dual_ur3_stand_collision_box/test_convex58.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex59.stl" file="ur3/dual_ur3_stand_collision_box/test_convex59.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex6.stl" file="ur3/dual_ur3_stand_collision_box/test_convex6.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex7.stl" file="ur3/dual_ur3_stand_collision_box/test_convex7.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex8.stl" file="ur3/dual_ur3_stand_collision_box/test_convex8.stl"></mesh>
+        <mesh name="/home/jgkim-larr/RL/gym-custom/utils/out/test_convex9.stl" file="ur3/dual_ur3_stand_collision_box/test_convex9.stl"></mesh>
+
+        <!--UR3-->
+        <mesh name="ur_base" file="ur3/ur3_base.stl" ></mesh>
+        <mesh name="shoulder" file="ur3/ur3_shoulder.stl" ></mesh>
+        <mesh name="upperarm" file="ur3/ur3_upperarm.stl" ></mesh>
+        <mesh name="forearm" file="ur3/ur3_forearm.stl" ></mesh>
+        <mesh name="wrist1" file="ur3/ur3_wrist1.stl" ></mesh>
+        <mesh name="wrist2" file="ur3/ur3_wrist2.stl" ></mesh>
+        <mesh name="wrist3" file="ur3/ur3_wrist3.stl" ></mesh>
+
+        <!--Robotiq 2F-85 Gripper-->
+        <mesh file="ur3/kinova_robotiq_coupler.stl" />
+        <mesh file="ur3/robotiq_85_base_link.stl" />
+        <mesh file="ur3/robotiq_85_finger_link.stl" />
+        <mesh file="ur3/robotiq_85_finger_tip_link.stl" />
+        <mesh file="ur3/robotiq_85_inner_knuckle_link.stl" />
+        <mesh file="ur3/robotiq_85_knuckle_link.stl" />
+        
+        <!--Objects-->
+        <mesh name="mug" file="objects/mug.stl" scale="0.0006 0.0006 0.0006"/>
+    </asset>
+    <asset>
+        <material name="robot0:geomMat" shininess="0.03" specular="0.4"></material>
+        <material name="robot0:gripper_finger_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:gripper_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:arm_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:head_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:torso_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:base_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="RobMat" specular="0.9" shininess="0.5" reflectance="0" rgba="0.7 0.7 0.7 1" emission="0.1" />
+        <material name="GriMat" specular="0.9" shininess="0.5" reflectance="0" rgba="0.1 0.1 0.1 1" emission="0.1" />
+        <material name="BasketMat" specular="0" shininess="0" reflectance="0" rgba="0.26 0.16 0.16796875 1" emission="0" />
+        <material name="Light" specular="0" shininess="0.6" reflectance="0.9" rgba="0.5 0.5 1 1" emission="0.7" />
+        
+        <texture file="marble.png" name="marble" />
+        <material name="marble" shininess="0.3" rgba="0.9 0.9 0.9 1" specular="1" texture="marble"/>
+
+        <texture file="metal.png" name="metal" />
+        <material name="metal" shininess="0.5" rgba="1 1 1 1" specular="1" texture="metal"/>
+
+        <texture file="navy_blue.png" name="navy_blue" />
+        <material name="navy_blue" shininess="0.3" rgba="0.9 0.9 0.9 1" specular="1" texture="navy_blue"/>
+
+        <texture file="wood_light.png" name="table_texture" type="2d"/>
+        <material name="table_material" rgba="1 1 1 1" shininess="0.1" specular="0.4" texture="table_texture" />
+
+        <texture file="wood_light.png" name="wood_texture"/>
+        <material name="wood_material" rgba="1 1 1 1" shininess="0.1" specular="0.4" texture="wood_texture" />
+
+        <texture file="tennis.png" name="tennis_green"/>
+        <material name="tennis_green" shininess="0.3" rgba="0.9 0.9 0.9 1" specular="1" texture="tennis_green"/>
+
+        <texture name="wood" file="../textures/wood.png" type="cube"/>
+        <material shininess=".1" name="wood" texture="wood" specular="0.4"/>
+
+        <texture name="real_door" file="../textures/real_door.png" type="cube"/>
+        <material shininess=".1" name="real_door" texture="real_door" specular=".4"/>
+
+        <texture name="darkwood" file="../textures/darkwood.png" type="cube"/>
+        <material shininess=".1" name="darkwood" texture="darkwood" specular="0.4"/>
+
+        <texture name="granite" file="../textures/granite.png" type="2d"/>
+        <material shininess=".1" name="granite" texture="granite" specular="0.4"/>
+
+        <texture name="light_wood" file="../textures/light_wood.png" type="cube"/>
+        <material shininess=".1" name="light_wood" texture="light_wood" specular="0.4"/>
+
+        <texture name="light_wood_v2" file="../textures/light_wood_v2.png" type="cube"/>
+        <material shininess=".1" name="light_wood_v2" texture="light_wood_v2" specular="0.4"/>
+
+        <texture name="light_wood_v3" file="../textures/light_wood_v3.png" type="2d"/>
+        <material shininess=".1" name="light_wood_v3" texture="light_wood_v3" specular="0.4"/>
+
+        <texture builtin="gradient" height="256" rgb1=".9 .9 1." rgb2=".2 .3 .4" type="skybox" width="256"/>
+        <texture type="skybox" builtin="gradient" rgb1=".50 .495 .48" rgb2=".50 .495 .48" width="32" height="32"></texture>
+    </asset>
+
+</mujoco>

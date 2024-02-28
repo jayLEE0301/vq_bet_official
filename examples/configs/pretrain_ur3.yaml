@@ -1,0 +1,72 @@
+defaults:
+  - env_vars: env_vars
+  - _self_
+
+seed: 42
+window_size: 10
+goal_window_size: 10
+eval_window_size: 10
+batch_size: 2048
+epochs: 301
+eval_freq: 10
+eval_on_env_freq: 25
+num_env_evals: 5
+num_final_evals: 20
+num_final_eval_per_goal: 5
+action_window_size: 1
+goal_dim: 0 # goal_dim: 0 non goal cond
+
+wandb:
+  project: "vq-bet"
+  entity: ${env_vars.wandb_entity}
+
+device: cuda
+optim:
+  lr: 5.5e-5
+  weight_decay: 2e-4
+  betas: [0.9, 0.999]
+
+env:
+  gym:
+    _target_: ur3_env.UR3Wrapper
+    id: single-ur3-xy-left-comb-larr-for-train-v0
+    env:
+      _target_: gym_custom.make
+      id: single-ur3-xy-left-comb-larr-for-train-v0
+  obs_dim: 6
+  act_dim: 2
+  goal_dim: ${goal_dim}
+
+data:
+  _target_: dataset.get_ur3_train_val
+  data_directory: ${env_vars.datasets.ur3}
+  goal_conditional: future
+  window_size: ${window_size}
+  future_seq_len: ${goal_window_size}
+  min_future_sep: ${action_window_size}
+  action_window_size: ${action_window_size}
+  vqbet_get_future_action_chunk: false
+
+save_every: 10
+save_path: "${env_vars.save_path}/checkpoints/${env.gym.id}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+load_path: null
+
+vqvae_model:
+  _target_: vqvae.VqVae
+  input_dim_h: ${action_window_size}
+  input_dim_w: ${env.act_dim}
+  n_latent_dims: 512
+  vqvae_n_embed: 16
+  vqvae_groups: 2
+  eval: false
+  device: ${device}
+
+
+goal_fn:
+  _target_: ur3_env.get_goal_fn
+  data_directory: ${env_vars.datasets.ur3}
+  goal_conditional: ${data.goal_conditional}
+  seed: ${seed}
+  train_fraction: 0.95
+  goal_seq_len: ${window_size}
+  unconditional: false

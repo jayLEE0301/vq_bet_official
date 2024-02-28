@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <!--Infer masses and inertial masses from geometry-->
+	<compiler inertiafromgeom="true"/>
+
+    <!--Global defaults-->
+	<default>
+		<joint armature="0" damping="1" limited="true"/>
+		<geom contype="0" friction="1 0.1 0.1" rgba="0.7 0.7 0 1"/>
+		<tendon/>
+		<motor ctrlrange="-3 3"/>
+	</default>
+
+    <!--Simulator options-->
+	<option gravity="0 0 -9.81" integrator="RK4" timestep="0.02"/>
+	<size nstack="3000"/>
+</mujoco>

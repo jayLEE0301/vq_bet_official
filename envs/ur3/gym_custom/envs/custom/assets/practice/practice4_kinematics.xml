@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="UR3 DH parameters">
+	<compiler angle="radian" coordinate="local" inertiafromgeom="true" meshdir="../meshes" texturedir="../textures" />
+
+	<default>
+		<geom contype="0" />
+	</default>
+
+    <option gravity="0 0 0" integrator="RK4" timestep="0.01"/>
+	<size nstack="3000"/>
+    
+    <asset>
+        <mesh name="ur_base" file="ur3/ur3_base.stl" ></mesh>
+        <mesh name="shoulder" file="ur3/ur3_shoulder.stl" ></mesh>
+        <mesh name="upperarm" file="ur3/ur3_upperarm.stl" ></mesh>
+        <mesh name="forearm" file="ur3/ur3_forearm.stl" ></mesh>
+        <mesh name="wrist1" file="ur3/ur3_wrist1.stl" ></mesh>
+        <mesh name="wrist2" file="ur3/ur3_wrist2.stl" ></mesh>
+        <mesh name="wrist3" file="ur3/ur3_wrist3.stl" ></mesh>
+
+        <material name="robot0:geomMat" shininess="0.03" specular="0.4"></material>
+        <material name="robot0:gripper_finger_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:gripper_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:arm_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:head_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:torso_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="robot0:base_mat" shininess="0.03" specular="0.4" reflectance="0"></material>
+        <material name="RobMat" specular="0.9" shininess="0.5" reflectance="0" rgba="0.7 0.7 0.7 1" emission="0.1" />
+    </asset>
+
+    <worldbody>
+        <!--from UR3 website-->
+        <body name="base" pos="0 0 0" quat="1 0 0 0">
+            <geom name="base" type="cylinder" fromto="0 0 0 0 0 0.1519" size="0.01" rgba="1 0 0 0.5" />
+            <inertial pos="0 0.1319 0" mass="2" />
+            <joint name="joint1" type="hinge" axis="0 0 1" />
+            <body name="joint1" pos="0 0 0.1519" quat="0.707 0.707 0 0">
+                <geom name="joint1" type="cylinder" fromto="0 0 0 -0.24365 0 0" size="0.01" rgba="1 0 0 0.5" />
+                <inertial pos="-0.11365 0 0.1157" mass="3.42" />
+                <joint name="joint2" type="hinge" axis="0 0 1" />
+                <body name="joint2" pos="-0.24365 0 0" quat="1 0 0 0">
+                    <geom name="joint2" type="cylinder" fromto="0 0 0 -0.21325 0 0" size="0.01" rgba="1 0 0 0.5" />
+                    <inertial pos="-0.16325 0 0.0238" mass="1.26" />
+                    <joint name="joint3" type="hinge" axis="0 0 1" />
+                    <body name="joint3" pos="-0.21325 0 0" quat="1 0 0 0">
+                        <geom name="joint3" type="cylinder" fromto="0 0 0 0 0 0.11235" size="0.01" rgba="1 0 0 0.5" />
+                        <inertial pos="0 -0.01 0.11235" mass="0.8" />
+                        <joint name="joint4" type="hinge" axis="0 0 1" />
+                        <body name="joint4" pos="0 0 0.11235" quat="0.707 0.707 0 0">
+                            <geom name="joint4" type="cylinder" fromto="0 0 0 0 0 0.08535" size="0.01" rgba="1 0 0 0.5" />
+                            <inertial pos="0 0.01 0.08535" mass="0.8" />
+                            <joint name="joint5" type="hinge" axis="0 0 1" />
+                            <body name="joint5" pos="0 0 0.08535" quat="0.707 -0.707 0 0">
+                                <geom name="joint5" type="cylinder" fromto="0 0 0 0 0 0.0819" size="0.01" rgba="1 0 0 0.5" />
+                                <inertial pos="0 0 0.0619" mass="0.35" />
+                                <joint name="joint6" type="hinge" axis="0 0 1" />
+                                <body name="joint6" pos="0 0 0.0819" quat="1 0 0 0">
+                                    <geom name="joint6" type="sphere" size="0.005" rgba="0 1 0 1" />
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <!--from mesh-->
+        <body name="base_link" pos="0 0 0" quat="0 0 0 1">
+            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="2" diaginertia="0.005625 0.00305317 0.00305317" />
+            <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="ur_base" material="robot0:base_mat" pos="0 0 -0.00001" /> <!--Need gap to prevent collision-->
+            <body name="shoulder_link" pos="0 0 0.1519">
+                <inertial pos="0 0 0" mass="2" diaginertia="0.00809316 0.00809316 0.005625" />
+                <joint name="shoulder_pan_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" />
+                <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="shoulder" material="robot0:head_mat" />
+                <body name="upper_arm_link" pos="0 0.1198 0" quat="0.707107 0 0.707107 0">
+                    <inertial pos="0 0 0.121825" mass="3.42" diaginertia="0.0217285 0.0217285 0.00961875" />
+                    <joint name="shoulder_lift_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" />
+                    <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="upperarm" material="robot0:head_mat" />
+                    <body name="forearm_link" pos="0 -0.0925 0.24365">
+                        <inertial pos="0 0 0.106625" mass="1.26" diaginertia="0.00654681 0.00654681 0.00354375" />
+                        <joint name="elbow_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-3.14159 3.14159" />
+                        <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="forearm" material="robot0:arm_mat"/>
+                        <body name="wrist_1_link" pos="0 0 0.21325" quat="0.707107 0 0.707107 0">
+                            <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.8" diaginertia="0.00225 0.002085 0.002085" />
+                            <joint name="wrist_1_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" />
+                            <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="wrist1" material="RobMat"/>
+                            <body name="wrist_2_link" pos="0 0.08105 0">
+                                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.8" diaginertia="0.00225 0.002085 0.002085" />
+                                <joint name="wrist_2_joint" pos="0 0 0" axis="0 0 1" limited="true" range="-6.28319 6.28319" />
+                                <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="wrist2" material="RobMat" />
+                                <body name="wrist_3_link" pos="0 0 0.08535">
+                                    <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.35" diaginertia="0.000984375 0.000912187 0.000912187" />
+                                    <joint name="wrist_3_joint" pos="0 0 0" axis="0 1 0" limited="true" range="-6.28319 6.28319" />
+                                    <geom type="mesh" rgba="0.7 0.7 0.7 0.25" mesh="wrist3" material="RobMat"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <!--Dummy box-->
+        <body name="dummy" pos="0 0.5 0">
+            <joint name="dummy" axis="1 0 0" type="slide" />
+            <geom name="dummy" type="box" size="0.02 0.02 0.02" rgba="0.7 0.7 0.7 1" />
+        </body>
+
+    </worldbody>
+
+    <actuator>
+        <!-- <motor joint="dummy" name="dummy" ctrlrange="-1 1" /> -->
+        <motor joint="shoulder_pan_joint" name="joint1" ctrlrange="-10 10" />
+    </actuator>
+
+</mujoco>

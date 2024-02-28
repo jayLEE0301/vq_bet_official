@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!--  ###########################     NOTE: VERY IMPORTANT     ##############################   -->
+<!-- Universal Robots do not support more than 96 values in recieve or send config at one time  -->
+<rtde_config>
+    <receive key="out">
+        <!--<field name="target_q" type="VECTOR6D"/>-->
+        <!--<field name="target_qd" type="VECTOR6D"/>-->
+        <!--<field name="target_qdd" type="VECTOR6D"/>-->
+        <!--<field name="target_current" type="VECTOR6D"/>-->
+        <!--<field name="target_moment" type="VECTOR6D"/>-->
+        <field name="actual_q" type="VECTOR6D"/>
+        <field name="actual_qd" type="VECTOR6D"/>
+        <!--<field name="actual_current" type="VECTOR6D"/>-->
+        <!--<field name="joint_control_output" type="VECTOR6D"/>-->
+        <field name="actual_TCP_pose" type="VECTOR6D"/>
+        <!--<field name="actual_TCP_speed" type="VECTOR6D"/>-->
+        <field name="actual_TCP_force" type="VECTOR6D"/>
+        <!--<field name="target_TCP_pose" type="VECTOR6D"/>-->
+        <!--<field name="target_TCP_speed" type="VECTOR6D"/>-->
+        <field name="actual_digital_input_bits" type="UINT64"/>
+        <!--<field name="joint_temperatures" type="VECTOR6D"/>-->
+        <!--<field name="actual_execution_time" type="DOUBLE"/>-->
+        <field name="robot_mode" type="INT32"/>
+        <!--<field name="joint_mode" type="VECTOR6INT32"/>-->
+        <!--<field name="safety_mode" type="INT32"/>-->
+        <field name="actual_tool_accelerometer" type="VECTOR3D"/>
+        <field name="speed_scaling" type="DOUBLE"/>-->
+        <!--<field name="target_speed_fraction" type="DOUBLE"/>-->
+        <field name="actual_momentum" type="DOUBLE"/>
+        <!--<field name="actual_main_voltage" type="DOUBLE"/>-->
+        <!--<field name="actual_robot_voltage" type="DOUBLE"/>-->
+        <!--<field name="actual_robot_current" type="DOUBLE"/>-->
+        <!--<field name="actual_joint_voltage" type="VECTOR6D"/>-->
+        <field name="actual_digital_output_bits" type="UINT64"/>
+        <field name="runtime_state" type="UINT32"/>
+        <field name="robot_status_bits" type="UINT32"/>
+        <field name="safety_status_bits" type="UINT32"/>
+        <field name="analog_io_types" type="UINT32"/>
+        <field name="standard_analog_input0" type="DOUBLE"/>
+        <field name="standard_analog_input1" type="DOUBLE"/>
+        <field name="standard_analog_output0" type="DOUBLE"/>
+        <field name="standard_analog_output1" type="DOUBLE"/>
+        <!--<field name="io_current" type="DOUBLE"/>-->
+        <!--<field name="euromap67_input_bits" type="UINT32"/>-->
+        <!--<field name="euromap67_output_bits" type="UINT32"/>-->
+        <!--<field name="euromap67_24V_voltage" type="DOUBLE"/>-->
+        <!--<field name="euromap67_24V_current" type="DOUBLE"/>-->
+        <!--<field name="tool_mode" type="UINT32"/>-->
+        <!--<field name="tool_analog_input_types" type="UINT32"/>-->
+        <!--<field name="tool_analog_input0" type="DOUBLE"/>-->
+        <!--<field name="tool_analog_input1" type="DOUBLE"/>-->
+        <!--<field name="tool_output_voltage" type="INT32"/>-->
+        <!--<field name="tool_output_current" type="DOUBLE"/>-->
+        <!--<field name="tcp_force_scalar" type="DOUBLE"/>-->
+        
+        <field name="output_bit_registers0_to_31" type="UINT32"/>
+        <!--<field name="output_bit_registers32_to_63" type="UINT32"/>-->
+        
+        <field name="output_int_register_0" type="INT32"/>
+        <field name="output_int_register_1" type="INT32"/>
+        <!--<field name="output_int_register_2" type="INT32"/>-->
+        <!--<field name="output_int_register_3" type="INT32"/>-->
+        <!--<field name="output_int_register_4" type="INT32"/>-->
+        <!--<field name="output_int_register_5" type="INT32"/>-->
+        <!--<field name="output_int_register_6" type="INT32"/>-->
+        <!--<field name="output_int_register_7" type="INT32"/>-->
+        <!--<field name="output_int_register_8" type="INT32"/>-->
+        <!--<field name="output_int_register_9" type="INT32"/>-->
+        <!--<field name="output_int_register_10" type="INT32"/>-->
+        <!--<field name="output_int_register_11" type="INT32"/>-->
+        <!--<field name="output_int_register_12" type="INT32"/>-->
+        <!--<field name="output_int_register_13" type="INT32"/>-->
+        <!--<field name="output_int_register_14" type="INT32"/>-->
+        <!--<field name="output_int_register_15" type="INT32"/>-->
+        <!--<field name="output_int_register_16" type="INT32"/>-->
+        <!--<field name="output_int_register_17" type="INT32"/>-->
+        <!--<field name="output_int_register_18" type="INT32"/>-->
+        <!--<field name="output_int_register_19" type="INT32"/>-->
+        <!--<field name="output_int_register_20" type="INT32"/>-->
+        <!--<field name="output_int_register_21" type="INT32"/>-->
+        <!--<field name="output_int_register_22" type="INT32"/>-->
+        <!--<field name="output_int_register_23" type="INT32"/>-->
+        
+        <field name="output_double_register_0" type="DOUBLE"/>
+        <field name="output_double_register_1" type="DOUBLE"/>
+        <field name="output_double_register_2" type="DOUBLE"/>
+        <field name="output_double_register_3" type="DOUBLE"/>
+        <!--<field name="output_double_register_4" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_5" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_6" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_7" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_8" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_9" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_10" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_11" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_12" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_13" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_14" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_15" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_16" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_17" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_18" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_19" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_20" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_21" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_22" type="DOUBLE"/>-->
+        <!--<field name="output_double_register_23" type="DOUBLE"/>-->
+    </receive>
+	
+	<send key="in">
+        <!--<field name="speed_slider_mask" type="UINT32" initValue="0"/>-->
+		<!--<field name="speed_slider_fraction" type="DOUBLE" initValue="0"/>-->
+		<field name="standard_digital_output_mask" type="UINT8" initValue="0"/>
+		<field name="configurable_digital_output_mask" type="UINT8" initValue="0"/>
+		<field name="standard_digital_output" type="UINT8" initValue="0"/>
+		<field name="configurable_digital_output" type="UINT8" initValue="0"/>
+		<!--<field name="standard_analog_output_mask" type="UINT8" initValue="0"/>-->
+		<!--<field name="standard_analog_output_type" type="UINT8" initValue="0"/>-->
+		<!--<field name="standard_analog_output_0" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="standard_analog_output_1" type="DOUBLE" initValue="0"/>-->
+		
+		<field name="input_bit_registers0_to_31" type="UINT32" initValue="0"/>
+		<!--<field name="input_bit_registers32_to_63" type="UINT32" initValue="0"/>-->
+		
+		<field name="input_int_register_0" type="INT32" initValue="0"/>
+		<field name="input_int_register_1" type="INT32" initValue="0"/>
+		<field name="input_int_register_2" type="INT32" initValue="0"/>
+		<field name="input_int_register_3" type="INT32" initValue="0"/>
+		<field name="input_int_register_4" type="INT32" initValue="0"/>
+		<field name="input_int_register_5" type="INT32" initValue="0"/>
+		<field name="input_int_register_6" type="INT32" initValue="0"/>
+		<!--<field name="input_int_register_7" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_8" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_9" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_10" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_11" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_12" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_13" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_14" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_15" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_16" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_17" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_18" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_19" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_20" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_21" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_22" type="INT32" initValue="0"/>-->
+		<!--<field name="input_int_register_23" type="INT32" initValue="0"/>-->		
+		
+		<field name="input_double_register_0" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_1" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_2" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_3" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_4" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_5" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_6" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_7" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_8" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_9" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_10" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_11" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_12" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_13" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_14" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_15" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_16" type="DOUBLE" initValue="0"/>
+		<field name="input_double_register_17" type="DOUBLE" initValue="0"/>
+		<!--<field name="input_double_register_18" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="input_double_register_19" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="input_double_register_20" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="input_double_register_21" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="input_double_register_22" type="DOUBLE" initValue="0"/>-->
+		<!--<field name="input_double_register_23" type="DOUBLE" initValue="0"/>-->
+	</send>
+</rtde_config>

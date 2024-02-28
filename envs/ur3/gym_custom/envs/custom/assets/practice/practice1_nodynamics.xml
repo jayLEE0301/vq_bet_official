@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <include file="practice1_shared_config.xml"/> <!--Import config-->
+
+    <worldbody>
+        <include file="practice1_base.xml"/> <!--Import kinematic chain-->
+    </worldbody>
+
+    <!--Define actuators-->
+	<actuator>
+        <motor joint="hinge" name="hinge" ctrlrange="0 0"/> <!--Torque control-->
+	</actuator>
+</mujoco>

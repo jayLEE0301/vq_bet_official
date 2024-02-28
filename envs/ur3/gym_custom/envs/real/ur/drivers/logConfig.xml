@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<logConfig>
+    <developerMode>False</developerMode> 
+    <eventLogConfig>					
+        <!--<fileMode>Overwrite</fileMode>-->
+		<fileMode>Append</fileMode>
+    </eventLogConfig>					
+    <dataLogConfig>
+        <fileMode>Append</fileMode>		
+        <defaultDecimals>4</defaultDecimals>
+        <logParameters>
+            <actual_TCP_pose>6</actual_TCP_pose>
+			<actual_q>6</actual_q>
+        </logParameters>
+    </dataLogConfig>
+</logConfig>

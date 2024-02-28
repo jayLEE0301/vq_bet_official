@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="ur3">
+    <include file="shared_config.xml"/> <!--Import config-->
+    <!-- <include file="robotiq85_gripper_constraints.xml"> -->
+    <worldbody>
+        <include file="ur3_base.xml"/> <!--UR3 kinematic model-->
+        <body name="mug" pos="0 0.6 0.02">
+            <geom type="mesh" pos = "0 0 -0.005" rgba="0.7 0.7 0.7 1" mesh="mug" material="light_wood" 
+                contype="1" conaffinity="1" friction="1 0.1 0.002" condim="4"
+            />
+            <!-- <inertial /> -->
+            <joint name="mug" type="free" limited="false" damping="0.0" armature="0" />
+        </body>
+    </worldbody>
+
+    <!--Define actuators-->
+    <actuator> <!--https://www.universal-robots.com/articles/ur-articles/max-joint-torques/-->>
+        <motor name="shoulder_pan_joint" joint="shoulder_pan_joint" ctrlrange="-50 50" />
+        <motor name="shoulder_lift_joint" joint="shoulder_lift_joint" ctrlrange="-50 50" />
+        <motor name="elbow_joint" joint="elbow_joint" ctrlrange="-25 25" />
+        <motor name="wrist_1_joint" joint="wrist_1_joint" ctrlrange="-10 10" />
+        <motor name="wrist_2_joint" joint="wrist_2_joint" ctrlrange="-10 10" />
+        <motor name="wrist_3_joint" joint="wrist_3_joint" ctrlrange="-10 10" />
+    </actuator>
+</mujoco>

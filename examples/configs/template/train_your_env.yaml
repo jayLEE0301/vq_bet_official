@@ -1,0 +1,75 @@
+defaults:
+  - env_vars: env_vars
+  - _self_
+
+seed: 42
+window_size: TODO
+goal_window_size: TODO
+eval_window_size: TODO
+batch_size: 1024
+epochs: TODO
+eval_freq: 10
+eval_on_env_freq: 20
+num_env_evals: 20
+num_final_evals: 20
+num_final_eval_per_goal: 5
+action_window_size: TODO
+sequentially_select: false
+vqvae_load_dir: "YOUR_PATH_TO_PRETRAINED_VQVAE/trained_vqvae.pt"
+goal_dim: TODO
+
+wandb:
+  project: "vq-bet"
+  entity: ${env_vars.wandb_entity}
+
+device: cuda
+optim:
+  lr: 5.5e-5
+  weight_decay: 2e-4
+  betas: [0.9, 0.999]
+
+env:
+  TODO
+
+data:
+  _target_: TODO
+  TODO
+
+save_every: 10
+save_path: "${env_vars.save_path}/checkpoints/${env.gym.id}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+load_path: null
+
+model:
+  _target_: vq_behavior_transformer.BehaviorTransformer
+  obs_dim: ${env.obs_dim}
+  act_dim: ${env.act_dim}
+  goal_dim: ${env.goal_dim}
+  obs_window_size: ${window_size}
+  act_window_size: ${action_window_size}
+  sequentially_select: ${sequentially_select}
+  gpt_model:
+    _target_: vq_behavior_transformer.GPT
+    config:
+      _target_: vq_behavior_transformer.GPTConfig
+      block_size: 110
+      input_dim: ${env.obs_dim}
+      n_layer: 6
+      n_head: 6
+      n_embd: 120
+  vqvae_model:
+    _target_: vqvae.VqVae
+    obs_dim: TODO
+    input_dim_h: ${action_window_size}
+    input_dim_w: ${env.act_dim}
+    n_latent_dims: 512
+    vqvae_n_embed: 10
+    vqvae_groups: 2
+    eval: true
+    device: ${device}
+    load_dir: ${vqvae_load_dir}
+  offset_loss_multiplier: TODO
+  secondary_code_multiplier: TODO
+
+goal_fn:
+  _target_: TODO
+  TODO

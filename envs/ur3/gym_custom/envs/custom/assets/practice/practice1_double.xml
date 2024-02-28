@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco>
+    <include file="practice1_shared_config.xml"/> <!--Import config-->
+
+    <worldbody>
+        <body name="pendulum_front" pos="0 -0.5 0">
+            <include file="practice1_base_front.xml"/> <!--Import kinematic chain-->
+        </body>
+        <body name="pendulum_back" pos="0 0.5 0">
+            <include file="practice1_base_back.xml"/> <!--Import kinematic chain-->
+        </body>
+    </worldbody>
+
+    <!--Define actuators-->
+    <actuator>
+        <motor joint="front_hinge" name="front_hinge" ctrlrange="-100 100"/> <!--Torque control-->
+        <motor joint="back_hinge" name="back_hinge" ctrlrange="-100 100"/> <!--Torque control-->
+	</actuator>
+</mujoco>

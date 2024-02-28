@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mujoco model="double_pendulum">
+    <!--Infer masses and inertial masses from geometry-->
+	<compiler coordinate="local" inertiafromgeom="true"/>
+
+    <!--Global defaults-->
+	<default>
+		<joint armature="0" damping="0.05" limited="false"/>
+		<geom contype="0" friction="1 0.1 0.1" rgba="0.7 0.7 0 1"/>
+	</default>
+
+    <!--Simulator options-->
+	<option gravity="0 0 -9.81" integrator="RK4" timestep="0.01"/>
+	<size nstack="3000"/>
+
+    <!--Define bodies-->
+    <worldbody>
+        <!--<geom name="floor" pos="0 0 -3.0" rgba="0.8 0.9 0.8 1" size="40 40 40"/>-->
+        <geom name="bar" pos="0 0 0" quat="0.707 0 0.707 0" rgba="0.3 0.3 0.7 1" size="0.02 1" type="capsule"/>
+        <body name="pole1" pos="0 0 0">
+            <joint axis="0 1 0" name="hinge1" pos="0 0 0" type="hinge"/>
+            <geom fromto="0 0 0 0.001 0 -0.6" name="pole1" rgba="0 0.7 0.7 1" size="0.05" type="capsule"/>
+            <body name="pole2" pos="0 0 -0.6">
+                <joint axis="0 1 0" name="hinge2" pos="0 0 0" type="hinge"/>
+                <geom fromto="0 0 0 -0.001 0 -0.6" name="pole2" rgba="0.7 0 0.7 1" size="0.05" type="capsule"/>
+            </body>
+        </body>
+    </worldbody>
+
+    <!--Define actuators-->
+    <actuator>
+        <motor joint="hinge1" name="hinge1" ctrlrange="-400 400"/> <!--Torque control-->
+        <motor joint="hinge2" name="hinge2" ctrlrange="-100 100"/> <!--Torque control-->
+    </actuator>
+</mujoco>

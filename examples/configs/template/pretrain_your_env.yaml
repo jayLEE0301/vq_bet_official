@@ -1,0 +1,47 @@
+defaults:
+  - env_vars: env_vars
+  - _self_
+
+seed: 42
+window_size: TODO
+goal_window_size: TODO
+eval_window_size: TODO
+batch_size: 1024
+epochs: TODO
+eval_freq: 10
+eval_on_env_freq: 25
+num_env_evals: 5
+num_final_evals: 20
+num_final_eval_per_goal: 5
+action_window_size: TODO
+
+wandb:
+  project: "vq-bet"
+  entity: ${env_vars.wandb_entity}
+
+device: cuda
+optim:
+  lr: 5.5e-5
+  weight_decay: 2e-4
+  betas: [0.9, 0.999]
+
+
+data:
+  _target_: TODO
+  TODO
+
+save_every: 10
+save_path: "${env_vars.save_path}/checkpoints/${env.gym.id}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+load_path: null
+
+vqvae_model:
+  _target_: vqvae.VqVae
+  obs_dim: TODO
+  input_dim_h: ${action_window_size}
+  input_dim_w: ${env.act_dim}
+  n_latent_dims: 512
+  vqvae_n_embed: 10
+  vqvae_groups: 2
+  eval: false
+  device: ${device}
+  encoder_loss_multiplier: TODO
